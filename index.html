@@ -405,6 +405,15 @@
             transition: var(--transition);
             filter: grayscale(0.2);
             position: relative;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .profile-image i {
+            font-size: 6rem;
         }
 
         .profile-image:hover {
@@ -941,6 +950,184 @@
             }
         }
 
+        /* Achievements Section */
+        .achievements {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 80px 0;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .achievement-card {
+            background: var(--deep-blue);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+            border-color: var(--primary);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .achievement-text {
+            font-size: 1.2rem;
+            color: var(--light);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .achievement-desc {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-spinner {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(108, 99, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Experience Section */
+        .experience {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 80px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            text-align: right;
+            padding-right: 70px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            padding-left: 70px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 20px;
+            background: var(--deep-blue);
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
         /* Responsive Design */
         @media (max-width: 1200px) {
             .about {
@@ -971,6 +1158,23 @@
 
             .skills-grid, .achievements-grid, .projects-grid {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            /* Timeline Responsive */
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px;
+                text-align: left;
+                padding: 20px;
+            }
+
+            .timeline-dot {
+                left: 30px;
             }
         }
 
@@ -1054,6 +1258,13 @@
                 height: 180px;
                 font-size: 1.6rem;
             }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1100,6 +1311,10 @@
                 height: 150px;
                 font-size: 1.4rem;
             }
+
+            .achievement-icon {
+                font-size: 2.5rem;
+            }
         }
 
         /* Additional improvements for very small screens */
@@ -1128,10 +1343,19 @@
                 height: 130px;
                 font-size: 1.2rem;
             }
+
+            .achievement-icon {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Animation -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
     <!-- Data Science Background Elements -->
     <div class="data-bg circle"></div>
     <div class="data-bg square"></div>
@@ -1145,6 +1369,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="menu-btn">
@@ -1178,16 +1403,16 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Hello! I'm <span class="highlight">Vishal Kumar</span>, a passionate Data Scientist and Full Stack Developer based in Arrah, Bihar.</p>
-                    <p>I specialize in transforming complex data into actionable insights and building robust web applications. With a strong foundation in computer science and hands-on experience in AI and data science, I'm constantly exploring new technologies and methodologies.</p>
-                    <p>My technical expertise includes Python programming, machine learning, data analysis, and full-stack web development using modern frameworks. I thrive in collaborative environments and enjoy tackling challenging problems.</p>
-                    <p>When I'm not coding or analyzing data, I love exploring new places, reading tech blogs, and contributing to open-source projects.</p>
+                    <p>Hello! I'm <span class="highlight">Vishal Kumar</span>, a passionate Data Scientist and AI/ML Engineer based in Arrah, Bihar.</p>
+                    <p>I specialize in transforming complex data into actionable insights and building robust AI solutions. With a strong foundation in computer science and hands-on experience in AI and data science, I'm constantly exploring new technologies and methodologies.</p>
+                    <p>My technical expertise includes Python programming, machine learning, deep learning, natural language processing, and generative AI. I thrive in collaborative environments and enjoy tackling challenging problems.</p>
 
                     <div class="about-btns">
                         <a href="#" class="btn"><i class="fas fa-download"></i> Download Resume</a>
                     </div>
                 </div>
-               
+
+                </div>
             </div>
         </div>
     </section>
@@ -1203,10 +1428,11 @@
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3 class="skill-title">Machine Learning</h3>
-                    <p class="skill-description">Building predictive models using algorithms like regression, classification, clustering, and implementing ML pipelines for real-world applications.</p>
+                    <p class="skill-description">Building predictive models using algorithms like regression, classification, clustering for real-world applications.</p>
                     <div class="skill-tags">
+                        <span class="skill-tag">Supervised Learning</span>
+                        <span class="skill-tag">Unsupervised Learning</span>
                         <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">TensorFlow</span>
                         <span class="skill-tag">XGBoost</span>
                     </div>
                 </div>
@@ -1217,11 +1443,27 @@
                         <i class="fas fa-network-wired"></i>
                     </div>
                     <h3 class="skill-title">Deep Learning</h3>
-                    <p class="skill-description">Developing neural networks for complex pattern recognition, image processing, and natural language understanding using TensorFlow and PyTorch.</p>
+                    <p class="skill-description">Developing neural networks for complex pattern recognition, image processing, and natural language understanding.</p>
                     <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
                         <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">Keras</span>
-                        <span class="skill-tag">CNNs</span>
+                        <span class="skill-tag">CNN</span>
+                        <span class="skill-tag">RNN</span>
+                    </div>
+                </div>
+
+                <!-- NLP Card -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="skill-title">NLP</h3>
+                    <p class="skill-description">Working with transformer-based models for text generation, classification, and other language tasks.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">NLTK</span>
+                        <span class="skill-tag">Stemming</span>
+                        <span class="skill-tag">Transformer-based</span>
+                        <span class="skill-tag">BERT</span>
                     </div>
                 </div>
 
@@ -1231,11 +1473,12 @@
                         <i class="fas fa-robot"></i>
                     </div>
                     <h3 class="skill-title">Large Language Models</h3>
-                    <p class="skill-description">Working with transformer-based models like GPT, BERT, and T5 for text generation, classification, and other NLP tasks.</p>
+                    <p class="skill-description">Working with state-of-the-art language models for various NLP tasks and applications.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">GPT</span>
                         <span class="skill-tag">BERT</span>
                         <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">Transformers</span>
                     </div>
                 </div>
 
@@ -1245,39 +1488,12 @@
                         <i class="fas fa-magic"></i>
                     </div>
                     <h3 class="skill-title">Generative AI</h3>
-                    <p class="skill-description">Creating generative models for text, image, and audio generation using GANs, VAEs, and diffusion models.</p>
+                    <p class="skill-description">Creating generative models for text, image, and content generation using advanced AI techniques.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">GANs</span>
                         <span class="skill-tag">VAEs</span>
-                        <span class="skill-tag">Stable Diffusion</span>
-                    </div>
-                </div>
-
-                <!-- Cloud Deployment Card -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3 class="skill-title">Cloud Deployment</h3>
-                    <p class="skill-description">Deploying machine learning models and applications on cloud platforms with containerization and orchestration tools.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Kubernetes</span>
-                    </div>
-                </div>
-
-                <!-- DSA in C++ Card -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3 class="skill-title">DSA in C++</h3>
-                    <p class="skill-description">Strong in problem-solving and algorithms using C++, with expertise in data structures and complex algorithmic challenges.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Trees</span>
-                        <span class="skill-tag">DFS</span>
-                        <span class="skill-tag">BFS</span>
+                        <span class="skill-tag">Diffusion Models</span>
+                        <span class="skill-tag">Creative AI</span>
                     </div>
                 </div>
 
@@ -1287,39 +1503,57 @@
                         <i class="fas fa-keyboard"></i>
                     </div>
                     <h3 class="skill-title">Prompt Engineering</h3>
-                    <p class="skill-description">Expert in crafting effective prompts for AI models to generate desired outputs and optimize interactions with language models.</p>
+                    <p class="skill-description">Expert in crafting effective prompts for AI models to generate desired outputs and optimize interactions.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">LLM Optimization</span>
                         <span class="skill-tag">Context Engineering</span>
                         <span class="skill-tag">AI Interaction</span>
+                        <span class="skill-tag">Chain-of-Thought</span>
                     </div>
                 </div>
 
-                <!-- MySQL Database Card -->
+                <!-- Database Card -->
                 <div class="skill-card">
                     <div class="skill-icon">
                         <i class="fas fa-database"></i>
                     </div>
-                    <h3 class="skill-title">MySQL</h3>
-                    <p class="skill-description">Experienced in writing and optimizing SQL queries, managing databases, and ensuring data integrity using MySQL.</p>
+                    <h3 class="skill-title">Database</h3>
+                    <p class="skill-description">Experienced in database design, query optimization, and management using various database technologies.</p>
                     <div class="skill-tags">
-                        <span class="skill-tag">Window Functions</span>
-                        <span class="skill-tag">CTE</span>
-                        <span class="skill-tag">Query Optimization</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Data Modeling</span>
                     </div>
                 </div>
 
-                <!-- Python Card -->
+                <!-- Cloud Deployment Card -->
                 <div class="skill-card">
                     <div class="skill-icon">
-                        <i class="fab fa-python"></i>
+                        <i class="fas fa-cloud"></i>
                     </div>
-                    <h3 class="skill-title">Python</h3>
-                    <p class="skill-description">Proficient in Python for data analysis, machine learning, and web development using libraries like Pandas, NumPy, Scikit-learn, and Flask.</p>
+                    <h3 class="skill-title">Cloud Deployment</h3>
+                    <p class="skill-description">Deploying machine learning models and applications on cloud platforms with containerization tools.</p>
                     <div class="skill-tags">
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Streamlit</span>
+                    </div>
+                </div>
+
+                <!-- DSA in C++ Card -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="skill-title">DSA in C++</h3>
+                    <p class="skill-description">Strong in problem-solving and algorithms using C++, with expertise in data structures and complex algorithmic challenges.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Trees</span>
+                        <span class="skill-tag">Graphs</span>
+                        <span class="skill-tag">Dynamic Programming</span>
+                        <span class="skill-tag">STL</span>
                     </div>
                 </div>
             </div>
@@ -1359,7 +1593,7 @@
                             <li>Implemented feature selection and cross-validation techniques</li>
                             <li>Achieved 97% accuracy in malignant/benign classification</li>
                         </ul>
-                        <a href="https://predictioml-breastcancer.streamlit.app/" class="project-link">Live App<i class="fas fa-arrow-right"></i></a>
+                        <a href="https://predictioml-breastcancer.streamlit.app/" class="project-link">🔗 Live App <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -1375,8 +1609,96 @@
                             <li>Utilized ensemble methods for improved performance</li>
                             <li>Achieved 92% accuracy in cardiovascular risk assessment</li>
                         </ul>
-                        <a href="https://heart-disease-prediction-byvishal.streamlit.app/" class="project-link"> Live App <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://heart-disease-prediction-byvishal.streamlit.app/" class="project-link">🔗 Live App <i class="fas fa-arrow-right"></i></a>
                     </div>
+                </div>
+
+                <!-- New Project: Movie Recommendation System -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <span>Movie Recommendation</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Movie Recommendation System</h3>
+                        <p class="project-desc">07/2024 – 08/2024</p>
+                        <ul class="project-features">
+                            <li>Built collaborative filtering and content-based recommendation algorithms</li>
+                            <li>Used cosine similarity and matrix factorization techniques</li>
+                            <li>Deployed with Streamlit for interactive user experience</li>
+                        </ul>
+                        <a href="#" class="project-link">🔗 View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- New Project: Rainfall Prediction -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <span>Rainfall Prediction</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Rainfall Prediction System</h3>
+                        <p class="project-desc">09/2024 – 10/2024</p>
+                        <ul class="project-features">
+                            <li>Developed predictive models using historical weather data</li>
+                            <li>Implemented time series analysis and regression techniques</li>
+                            <li>Achieved 85% accuracy in rainfall prediction</li>
+                        </ul>
+                        <a href="#" class="project-link">🔗 View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- New Project: Facemask Detection -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <span>Facemask Detection</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Facemask Detection System</h3>
+                        <p class="project-desc">11/2024 – 12/2024</p>
+                        <ul class="project-features">
+                            <li>Built CNN model for real-time facemask detection</li>
+                            <li>Trained on custom dataset with 95% accuracy</li>
+                            <li>Implemented with OpenCV for live video processing</li>
+                        </ul>
+                        <a href="#" class="project-link">🔗 View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <h2 class="section-title">Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="achievement-text">Best Coordinator Award</div>
+                    <div class="achievement-desc">Recognized for outstanding leadership and organizational skills</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="achievement-text">Power BI Professional</div>
+                    <div class="achievement-desc">Certified in data visualization and business intelligence</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="achievement-text">Best Mechntroic - 2nd Position</div>
+                    <div class="achievement-desc">Secured 2nd place in robotics and mechatronics competition</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="achievement-text">Smart India Hackathon (SIH) – 2024 | Participant</div>
+                    <div class="achievement-desc">Ministry of Education, Govt. of India</div>
                 </div>
             </div>
         </div>
@@ -1412,7 +1734,7 @@
                         </div>
                         <div class="info-item-content">
                             <h3>LinkedIn</h3>
-                            <p>linkedin.com/in/vishalkumar</p>
+                            <p>linkedin.com/in/vishal-kumar-8761022b0</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -1450,16 +1772,27 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/vishal-kumar-8761022b0/"class=social-link><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/vishal-kumar-8761022b0/" class="social-link"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/Code-Vishal2005" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://x.com/VISHALKUMA58719?t=P79C9cv8i1mrNPuSi9zvSA&s=08"class=social-link><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-kaggle"></i></a>
             </div>
             <p class="copyright">© 2025 Vishal Kumar. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
     <script>
+        // Loading animation
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 1000);
+        });
+
         // Mobile menu toggle
         const menuBtn = document.querySelector('.menu-btn');
         const navLinks = document.querySelector('.nav-links');
@@ -1482,10 +1815,19 @@
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
+            const backToTop = document.getElementById('backToTop');
+            
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
+            }
+            
+            // Show/hide back to top button
+            if (window.scrollY > 500) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
             }
         });
         
@@ -1546,7 +1888,7 @@
 
         // Add animation on scroll
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.achievement-card, .project-card, .skill-card');
+            const elements = document.querySelectorAll('.achievement-card, .project-card, .skill-card, .info-item');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
@@ -1560,7 +1902,7 @@
         }
 
         // Initialize animation properties
-        document.querySelectorAll('.achievement-card, .project-card, .skill-card').forEach(element => {
+        document.querySelectorAll('.achievement-card, .project-card, .skill-card, .info-item').forEach(element => {
             element.style.opacity = 0;
             element.style.transform = 'translateY(20px)';
             element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -1589,6 +1931,31 @@
             // Start typing effect after a short delay
             setTimeout(typeWriter, 1000);
         }
+
+        // Add active class to navigation links based on scroll position
+        function highlightNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', highlightNavLink);
     </script>
 </body>
 </html>
